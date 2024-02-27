@@ -1,0 +1,87 @@
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="book.css">
+<title>e-Request | Workflow</title>
+	<script src="underscore-min.js"></script>
+	<script src="raphael-min.js"></script>
+	<script src="sequence-diagram-min.js">	</script>
+</head>
+
+<body>
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>ระบบยื่นคำขอข้อมูลข่าวสารของราชการ (e-Request)</h1>
+                <h6>MNRE-SLC-009</h6>
+            </header>
+            <article>
+    <h2 class="chapter-title">คู่มือผู้ควบคุมระบบ e-Request</h2>
+
+<p>
+ระบบรับคำขอข้อมูลข่าวสารของกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม (e-Request) ใช้รับคำขอข้อมูลข่าวสารตามพระราชบัญญัติข้อมูลข่าวสารของราชการ พ.ศ. 2540 ที่ยื่นผ่านช่องทางอิเล็กทรอนิกส์ (อีเมล) ของหน่วยงาน</p><br>
+<dd>
+<strong>วิธีดำเนินงาน</strong>
+</dd>
+
+<p>
+เริ่มจากผู้ขอยื่นคำขอข้อมูลข่าวสารผ่านระบบ e-Request จะมีอีเมลส่งคำขอนั้นมายังหน่วยงานที่ครอบครองหรือควบคุมดูแลข้อมูลข่าวสารนั้น และระบบจะส่งสำเนาอีเมลถึงศูนย์บริการร่วมกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม (ศบร.ทส.) อีกทางหนึ่ง เจ้าหน้าที่สารบรรณที่รับผิดชอบต้องตรวจสอบอีเมลของหน่วยงานทุกวัน ควรกำหนดความถี่ให้เหมาะสม อาทิ วันละ 3 รอบ เช่น 
+<ul>
+<li>รอบที่ 1 เวลา 09:00 น. <li>รอบที่ 2 เวลา 11:00 น. <li>รอบที่ 3 เวลา 15:00 น.</ul> 
+</p>
+<dd>
+แล้วเสนอเรื่องตามขั้นตอน เจ้าหน้าที่ผู้ประสานงานของหน่วยงานที่รับคำขอ แจ้งสถานะล่าสุดไปยัง ศบร.ทส. ทางอีเมล servicelinkcenter@mnre.go.th โดยระบุชื่อ-นามสกุลของผู้ขอ พร้อมข้อมูลสถานะคำขอ (ได้รับคำขอ / ตรวจสอบข้อมูล / อยู่ระหว่างพิจารณา / พิจารณาแล้วมีคำสั่งเปิดเผย/ไม่เปิดเผย เพราะเหตุใด / หรือ แจ้งผลการพิจารณาให้ผู้ขอทราบแล้ว) เพื่อให้ศบร.ทส. ปรับปรุงข้อมูลสถานะคำขอในระบบ e-Tracking ภายในวันที่ได้รับแจ้ง เพื่อให้พร้อมสำหรับการติดตามความคืบหน้า โดยให้ผู้ยื่นคำขอ แสดงตนผ่านบัญชีไลน์ GECC สป.ทส. ก่อนเข้าสู่หน้าต่างโปรแกรม e-Tracking เพื่อกรอกรหัสและเข้าถึงข้อมูลสถานะคำขอ
+</dd>
+
+<pre id="txt" hidden>
+title: MNRE Information Service Workflow
+Customer->Department:Send e-mail
+Customer-->>Ministry: CC e-mail
+note over Department, Ministry: Check e-mail
+note over Ministry: Update DB
+Department-->>Ministry: Report
+note over Ministry: Update DB
+note over Department: Consider
+Department-->>Ministry: Report
+note over Ministry: Update DB
+Customer-->>Ministry: Check the progress
+Ministry-->>Customer: Report
+Department->Customer: Correspond
+Department-->>Ministry: Report
+note over Ministry: Update DB
+Customer-->>Ministry: Check the progress
+Ministry-->>Customer: Report
+Customer-->>Customer: (:
+</pre>
+
+<br>
+<dd>
+<div id="diagram"></div>
+</dd>
+<script>
+	var diagram = Diagram.parse(document.getElementById('txt').
+innerText)
+
+diagram.drawSVG('diagram',{theme:'simple'})
+</script>
+
+<br>
+<center>****************</center><br>
+
+
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>1</li>
+                    <li>2</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+
+</body></html>
