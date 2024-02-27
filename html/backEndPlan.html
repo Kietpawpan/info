@@ -1,0 +1,202 @@
+﻿<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../css/book.css">
+<title>e-Request | Backend</title>
+	<script src="https://kietpawpan.github.io/workflow/underscore-min.js"></script>
+	<script src="https://kietpawpan.github.io/workflow/raphael-min.js"></script>
+	<script src="https://kietpawpan.github.io/workflow/sequence-diagram-min.js">	</script>
+</head>
+
+<body>
+<style>
+textarea {
+width: 100%;
+overflow:hidden;
+resize:none;
+height: scrollHeight;
+}
+
+table, td, th {
+  border: 1px solid;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+</style>
+
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>(ร่าง) ข้อเสนอโครงการพัฒนาระบบ e-Tracking Backend</h1>
+                <h6>MNRE-SLC-012</h6>
+            </header>
+            <article>
+    <h2 class="chapter-title">ระบบ e-Tracking Backend</h2>
+<dd>
+<strong>1. หลักการและเหตุผล</strong>
+</dd>
+<p>
+ในปัจจุบัน (ปีงบประมาณ พ.ศ. 2567) การปรับปรุง (update) ข้อมูลสถานะของคำขอข้อมูลข่าวสารในระบบติดตามคำขอข้อมูลข่าวสารของกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม (e-Tracking) 
+ยังใช้วิธีให้ผู้พัฒนาระบบ (Frontend Developer) ดำเนินการแก้ไข source code ของฐานข้อมูลสถานะคำขอ ซึ่งต้องใช้ความรอบคอบและระมัดระวังอย่างยิ่ง หากให้บุคคลอื่นดำเนินการแทน อาจไปลบหรือเติมรหัสคอมพิวเตอร์คลาดเคลื่อน ซึ่งจะทำให้ระบบ e-Tracking เสียหายทันที
+</p>
+<p>
+ ดังนั้น เพื่อป้องกันเหตุดังกล่าว และเพื่อให้มีระบบสำหรับเจ้าหน้าที่ผู้ปฏิบัติงานแต่ละหน่วยงาน เพื่อที่จะสามารถทำการปรับปรุงข้อมูลลงระบบติดตามสถานะคำขอได้ โดยไม่ต้องอาศัยความรู้ความชำนาญด้าน Coding สำนักงานปลัดกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม จึงจัดทำโครงการพัฒนาระบบสนับสนุนการปรับปรุงฐานข้อมูลของระบบติดตามสถานะคำขอข้อมูลข่าวสารของกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม (e-Tracking Backend) เพื่อให้มีระบบ Backend สำหรับใช้ควบคุมการแก้ไข source code ของฐานข้อมูลของระบบ e-Tracking โดยไม่ต้องเข้าถึงเครื่องแม่ขายจากระยะไกลแต่อย่างใด จะทำให้การ update ฐานข้อมูลดังกล่าวเป็นไปอย่างสะดวก รวดเร็ว และเรียบร้อย</p><br>
+
+<dd>
+<strong>2. วัตถุประสงค์ของโครงการ</strong>
+</dd>
+<p>
+เพื่อพัฒนาระบบสนับสนุนการปรับปรุงฐานข้อมูลของระบบติดตามสถานะคำขอข้อมูลข่าวสารของกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม (e-Tracking Backend) 
+</p>
+<br>
+<dd>
+<strong>3. วิธีดำเนินงาน</strong>
+</dd>
+<p>การพัฒนาระบบหลังบ้านของระบบติดตามสถานะคำขอข้อมูลข่าวสารของกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม (e-Tracking Backend) เพื่อสนุบสนุนเจ้าหน้าที่ผู้ปฏิบัติงาน ให้สามารถ Update สถานะคำขอในระบบ e-Tracking โดยไม่ต้องใช้ความรู้และทักษะด้าน Coding เริ่มจากผู้พัฒนาระบบ Backend ดำเนินการพิจารณาศึกษาทำความเข้าใจรหัสคอมพิวเตอร์ต้นฉบับ (source code) ของระบบ e-Tracking ว่าประกอบด้วยไฟล์ใด เก็บที่โฟลเดอร์ใดบนเครื่องคอมพิวเตอร์แม่ข่าย และมีลักษณะการจัดเรียงข้อมูลในภาษาใด รูปแบบใด แล้วพิจารณาออกแบบ/เขียนโปรแกรมหลังบ้าน เชื่อมโยงระบบฐานข้อมูลหลังบ้านกับระบบ Update ซึ่งเป็นหน้าต่างโปรแกรม สำหรับเจ้าหน้าที่เปิดเข้าใช้งานเพื่อปรับปรุงแก้ไขฐานข้อมูลสถานะคำขอในไฟล์นั้นเป็นการภายใน ทั้งนี้ ระบบ Backend จะรับข้อมูลหมายเลขประจำตัวประชาชน (13 หลัก) ของผู้ขอข้อมูลข่าวสาร และทำการเข้ารหัสข้อมูลดังกล่าวตามมาตรฐานสากลในฝั่งผู้ใช้งาน (client side) เพื่อคุ้มครองข้อมูลส่วนบุคคลของผู้ขอข้อมูลข่าวสาร รวมถึงรับข้อมูลสถานะคำขอเป็นข้อความ (text) ที่ผ่านกระบวนการตรวจสอบความถูกต้องของข้อมูลนำเข้า (input validation) ก่อนเริ่มกระบวนการแปลงข้อมูลนำเข้าทั้งหมด ให้เป็นรหัสฝั่งแม่ข่าย (server-side script) แล้วออกคำสั่งเรียกดูรหัสข้อมูลทั้งหมดในฐานข้อมูลของระบบ e-Tracking แล้วดำเนินการตัดแต่งรหัสข้อมูลในไฟล์ฐานข้อมูลดังกล่าว ตามข้อมูลนำเข้าที่ได้เข้ารหัสไว้ แล้วต่อเติมรหัสข้อมูลใหม่กลับเป็นฐานข้อมูลดังเดิม (คล้ายการผ่าตัดเปลี่ยนถ่ายอวัยวะภายในร่างกายคน) เมื่อระบบได้ดำเนินการ update เสร็จสิ้นแล้ว ให้มีการแจ้งเตือนเจ้าหน้าที่ผู้ใช้งานทราบต่อไป ในการนี้ จะมีการประยุกต์ใช้ความรู้และทักษะ ดังนี้</p>
+<ul>
+<li>การเขียนโปรแกรมฝั่งผู้ใช้งานและฝั่งแม่ข่าย (Full Stack Devloper) โดยใช้ทักษะ Coding ในภาษา HTML/CSS/JavaScript/PHP
+<li>มาตรฐานแอปลิเคชันภาครัฐสำหรับอุปกรณ์เคลื่อนที่ (Government Mobile Application Standard)
+<li>ทฤษฎีการออกแบบสื่อ (Gestal Theory) และการออกแบบบริการอิเล็กทรอนิกส์ (Service Design)
+<li>การเขียนผังงาน (Flowchart) ของโปรแกรมคอมพิวเตอร์ ตามมาตรฐาน IBM
+<li>พระราชบัญญัติข้อมูลข่าวสารของราชการ พ.ศ. 2540 และพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562
+<li>การเข้าถึงเครื่องแม่ข่ายของรัฐและรักษาความลับของทางราชการมิให้รั่วไหล
+<li>การทดสอบโปรแกรมด้วยอุปกรณ์คอมพิวเตอร์บนระบบปฏิบัติการที่หลากหลาย ได้แก่ Windows/Androi/iOs/Mac
+<li>การขอคำปรึกษาจากผู้เชี่ยวชาญด้านการเขียนโปรแกรมคอมพิวเตอร์ในต่างประเทศ ผ่านแพลตฟอร์มต่าง ๆ 
+</ul>
+<br>
+<p>
+ ทั้งนี้ เพื่อพัฒนาระบบหลังบ้าน (Backend Operation System) ให้มีกลไการทำงาน ตาม sequence diagram ด้านล่างนี้
+  
+<br>
+
+<dd>
+<pre id="txt" hidden>
+title: e-Tracking Backend Operation System
+note over Backend Program: Get user ID
+note over Backend Program: Get status Text
+note over Backend Program: Hash the ID
+note over Backend Program: Write PHP code
+note over Backend Program: Validate the Input
+Backend Program-->>Database: Request the database code
+Database->Backend Program: Return the database code
+note over Backend Program: Cut some tag
+note over Backend Program: Add a new code
+note over Backend Program: Add the cut tag
+Backend Program-->>Database: Write a new database
+note over Backend Program: Notify the user
+
+</pre>
+</dd>
+
+<br>
+<dd>
+<div id="diagram"></div>
+</dd>
+
+
+<br>
+<dd>
+<strong>4. ระยะเวลาดำเนินการ</strong>
+</dd>
+<p>ตุลาคม 2567 - กันยายน 2568</p>
+
+<br>
+<dd>
+<strong>5. แผนการดำเนินงาน</strong>
+</dd>
+<dd>
+<table id="01" align="left" style="color:black;width:100%;border: 1px solid;">
+<tr><th>กิจกรรม</th><th>ระยะเวลา</th></tr>
+<tr><td>1. ออกแบบระบบ Backend</td><td>ตุลาคม - ธันวาคม 2567</td></tr>
+<tr><td>2. เขียนโปรแกรม</td><td>มกราคม - มีนาคม 2568</td></tr>
+<tr><td>3. ทดสอบระบบ</td><td>เมษายน 2568</td></tr>
+<tr><td>4. จัดทำคู่มือปฏิบัติงาน</td><td>มิถุนายน - สิงหาคม 2568</td></tr>
+<tr><td>5. Deploy และเปิดใช้งานระบบ</td><td>พฤษภาคม-กันยายน 2568</td></tr>
+</table>
+</dd>
+<p>
+
+<br>
+<dd>
+<strong>6. งบประมาณ</strong>
+</dd>
+<p>ไม่มีการเสนอขอใช้งบประมาณ เนื่องจากสำนักงานปลัดกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม โดยกองกลาง (ส่วนข้อมูลข่าวสารและบริการร่วม) ดำเนินการพัฒนาระบบเอง</p>
+<br>
+<dd>
+<strong>7. หน่วยงานรับผิดชอบหลัก</strong>
+</dd>
+<p>กองกลาง (ส่วนข้อมูลข่าวสารและบริการร่วม)</p><p>สำนักงานปลัดกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม</p><p>โทร. 0 2265 6223-5
+
+<br><br>
+<dd>
+<strong>8. หน่วยงานสนับสนุน</strong>
+</dd>
+<p>กรมป่าไม้</p>
+<p>กรมอุทยานแห่งชาติ สัตว์ป่า และพันธุ์พืช</p>
+<p>กรมทรัพยากรทางทะเลและชายฝั่ง</p>
+<p>กรมทรัพยากรธรณี</p>
+<p>กรมทรัพยากรน้ำ</p>
+<p>กรมทรัพยากรน้ำบาดาล</p>
+<p>สำนักงานนโยบายและแผนทรัพยากรธรรมชาติและสิ่งแวดล้อม</p>
+<p>กรมควบคุมมลพิษ</p>
+<p>กรมการเปลี่ยนแปลงสภาพภูมิอากาศและสิ่งแวดล้อม</p>
+<p>องค์การอุตสาหกรรมป่าไม้</p>
+<p>องค์การสวนสัตว์แห่งประเทศไทย ในพระบรมราชูปถัมภ์</p>
+<p>องค์การสวนพฤกษศาสตร์</p>
+<p>องค์การบริหารจัดการก๊าซเรือนกระจก (องค์การมหาชน)</p>
+<p>สำนักงานพัฒนาเศรษฐกิจจากฐานชีวภาพ (องค์การมหาชน)</p>
+
+<br><br>
+<dd>
+</dd>
+
+<center>
+<br>
+<table style="text-align:center;padding:10px;margin:auto;border:none;color:black;">
+<tr style="text-align:center;padding:10px;margin:auto;border:none;color:black;">
+<td style="text-align:center;padding:10px;margin:auto;border:none;color:black;"><sup style="color:darkblue">Monte Kietpawpan</sup><br></td> 
+<td style="text-align:center;padding:10px;margin:auto;border:none;color:black;"><sup style="color:grey"></sup><br></td>
+</tr>
+<tr style="text-align:center;padding:10px;margin:auto;border:none;color:black;">
+<td style="text-align:center;padding:10px;margin:auto;border:none;color:black;">(นายมนตรี เกียรติเผ่าพันธ์)<br>นักวิเคราะห์นโยบายและแผน<br>ชำนาญการพิเศษ<br>ผู้เสนอโครงการ</td>
+<td style="text-align:center;padding:10px;margin:auto;border:none;color:black;">(นายวิวัฒน์ ศรีธนบุตร)<br>ผู้อำนวยการกองกลาง<br>ผู้เห็นชอบโครงการ</td>
+</tr>
+</table>
+<br><br>
+(นายเถลิงศักดิ์ เพ็ชรสุวรรณ)<br>รองปลัดกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม<br>ปฏิบัติราชการแทนปลัดกระทรวง<br>ทรัพยากรธรรมชาติและสิ่งแวดล้อม<br>ผู้อนุมัติโครงการ
+</center>
+<script>
+	var diagram = Diagram.parse(document.getElementById('txt').
+innerText)
+
+diagram.drawSVG('diagram',{theme:'simple'})
+</script>
+
+
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>1</li>
+                    <li>2</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+
+</body>
+<!--JAVASCRIPT TEXTAREA FIT TEXT-->
+<script type="text/javascript">
+	for (var i = 1; i <=100; i++) {
+	document.getElementById('textBox' + i).style.height = document.getElementById('textBox' +i).scrollHeight+'px';
+}
+
+</script>
+</html>

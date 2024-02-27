@@ -1,0 +1,483 @@
+﻿<html>
+<head>
+  <link rel="stylesheet" href="../css/book.css">
+
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+</head>
+<title>MNRE| PHP</title>
+<body>
+
+<style>
+textarea {
+width: 100%;
+overflow:hidden;
+resize:none;
+height: scrollHeight;
+}
+</style>
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>Coding</h1>
+                <h6>MNRE-SLC-010</h6>
+            </header>
+
+            <article>
+    <h2 class="chapter-title">PHP Note</h2>
+
+<p>The PHP code appears within the &lt;?php ... ?&gt; tag. 
+</p><br><br>
+
+<ol>
+<li> Show the text "Hello World" on the computer screen:<br>
+
+
+<!--TEXT-AREA-->
+<textarea id="textBox1">
+<?php
+echo "Hello World!";
+?></textarea><br><br>
+
+<li> Define variable with $varName = value, and use . instead of +:<br>
+
+<textarea id="textBox2">
+<?php
+$name = "Montri";
+$surname = "Kiatphaophan";
+echo "My name is " . $name . "<br>";
+echo "My surname is " . $surname;
+?></textarea><br><br>
+
+<li> Comments like javascript:
+<textarea id="textBox3">
+<?php
+// This is a single line comment
+
+/* 
+This is a multi line
+comments
+*/
+?></textarea><br><br>
+
+<li> Global and local variables
+<textarea id="textBox4">
+<?php
+$a = 3; // global 
+
+function Sum() {
+   $b = 4; // local
+   echo $a + $b;
+?></textarea><br><br>
+
+<li> Write script in HTML element with <strong>echo</strong>, tag as string.
+<textarea id="textBox5">
+<?php
+echo echo "<h2>" . $var . "</h2>";
+?></textarea><br><br>
+
+<li> Show the associate text, with <strong>define.</strong>
+<textarea id="textBox6">
+<?php
+// case-sensitive
+define("USER1", "Montri");
+echo USER1;
+?> 
+
+// case-insensitive
+<?php
+define("USER1", "Montri", true);
+echo user1;
+?></textarea><br><br>
+
+<li> Conditional statement, with <strong>if..elseif...else</strong>
+<textarea id="textBox7">
+<?php
+$t = date("Y");
+
+if ($t < "2566") {
+  echo "The past!";
+} elseif ($t < "2567") {
+  echo "The present!";
+} else {
+  echo "The future!";
+}
+?></textarea><br><br>
+
+
+<li> Identify the cases from user's codes, with <strong>switch</strong>
+<textarea id="textBox8">
+<?php
+$code = "123";
+
+switch ($code) {
+  case "123":
+    echo "Your code is 123!";
+    break;
+  case "456":
+    echo "Your code is 456!";
+    break;
+  case "789":
+    echo "Your code is 789!";
+    break;
+  default:
+    echo "Your code is not found.";
+}
+?></textarea><br><br>
+
+<li> Function name and variables
+<textarea id="textBox9">
+<?php
+function myFunction($myVariable) {
+  echo "$myVariable someText.<br>";
+}
+
+myFunction("variable");
+?></textarea><br><br>
+
+
+<li> Array
+<textarea id="textBox10">
+<?php
+$users = array("125d125d", "c24kls", "78dgt9");
+echo "The users's hashed IDs are" . $users[0] . ", " . $users[1] . " and " . $suers[2] . ".";
+?></textarea><br><br>
+
+<li> Associate Array
+<textarea id="textBox11">
+<?php
+$progress = array(
+"1254dgf"=>"รับคำขอ", 
+"125kju"=>"กำลังพิจารณา", 
+"1547fd"=>"เปิดเผย");
+echo "Your request is " . $progress['1547fd']";
+?></textarea><br><br>
+
+<li> Complex Array
+<textarea id="textBox12">
+<?php
+$users = array (
+  array("id1", "name1", "tel1"),
+  array("id2","name2", "tel2"),
+  array("id3","name3", "tel3"),
+  array("id4","name4", "tel4"),
+);
+  
+echo $users[0][0].": Name: ".$users[0][1].", Tel: ".$users[0][2].".<br>";
+echo $users[1][0].": Name: ".$users[1][1].", Tel: ".$users[1][2].".<br>";
+echo $users[2][0].": Name: ".$users[2][1].", Tel: ".$users[2][2].".<br>";
+echo $users[3][0].": Name: ".$users[3][1].", Tel: ".$users[3][2].".<br>";
+?></textarea><br><br>
+
+<li> Superglobal variable can be put under a function
+<textarea id="textBox13">
+<?php
+$a = 1;
+ 
+function addition() {
+  $GLOBALS['b'] = $GLOBALS['a'] + 5;
+}
+addition();
+echo $b;
+?></textarea><br><br>
+
+<li> $var = htmlspecialchars($_REQUEST['inputName'] will get data from the inputName input. 
+<textarea id="textBox14">
+// hide the action value with <?php echo $_SERVER['PHP_SELF'] 
+// post to this php file.
+<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+  Name: <input type="text" name="fname">
+  <input type="submit">
+</form>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // collect value from the input named fname.
+    $name = htmlspecialchars($_REQUEST['fname']);
+    if (empty($name)) {
+        echo "Name is empty";
+    } else {
+        echo $name;
+    }
+}
+?></textarea><br><br>
+
+<li> Form input page. We post the value to the eRequest.php file in the same folder. Clicking the submit botton will open the eRequest.php.
+<textarea id="textBox15">
+<html>
+<body>
+
+<form action="eRequest.php" method="post">
+Name: <input type="text" name="inputName"><br>
+E-mail: <input type="text" name="email"><br>
+<input type="submit">
+</form>
+
+</body>
+</html></textarea><br><br>
+
+<li> Form reponse page. We echo value = $_POST["inputName"] 
+<textarea id="textBox16">
+<html>
+<body>
+
+Welcome <?php echo $_POST["inputName"]; ?><br>
+Your email address is: <?php echo $_POST["email"]; ?>
+
+</body>
+</html></textarea><br><br>
+
+
+
+<li> Validate E-mail input with filter_var 
+<textarea id="textBox17">
+<?php
+$email_a = 'joe@example.com';
+$email_b = 'bogus';
+
+if (filter_var($email_a, FILTER_VALIDATE_EMAIL)) {
+    echo "Email address '$email_a' is considered valid.\n";
+}
+if (filter_var($email_b, FILTER_VALIDATE_EMAIL)) {
+    echo "Email address '$email_b' is considered valid.\n";
+} else {
+    echo "Email address '$email_b' is considered invalid.\n";
+}
+?></textarea><br><br>
+
+<li> Validate Integer input with filter_var 
+<textarea id="textBox18">
+<?php
+$int_a = '1';
+$int_b = '-1';
+$int_c = '4';
+$options = array(
+    'options' => array(
+        'min_range' => 0,
+        'max_range' => 3,
+    )
+);
+if (filter_var($int_a, FILTER_VALIDATE_INT, $options) !== FALSE) {
+    echo "Integer A '$int_a' is considered valid (between 0 and 3).\n";
+}
+if (filter_var($int_b, FILTER_VALIDATE_INT, $options) !== FALSE) {
+    echo "Integer B '$int_b' is considered valid (between 0 and 3).\n";
+}
+if (filter_var($int_c, FILTER_VALIDATE_INT, $options) !== FALSE) {
+    echo "Integer C '$int_c' is considered valid (between 0 and 3).\n";
+}
+
+$options['options']['default'] = 1;
+if (($int_c = filter_var($int_c, FILTER_VALIDATE_INT, $options)) !== FALSE) {
+    echo "Integer C '$int_c' is considered valid (between 0 and 3).";
+}
+?></textarea><br><br>
+
+<li> Validation process 
+
+   <div id="chart">
+      	st=>start: สร้าง input form
+	e=>end: ปลอดภัย
+
+      	op1=>operation: Check blank form
+
+	c2=>condition: Blank?
+
+        c3=>condition: method=POST?
+
+        op2=>operation: $name = $id ="";
+
+	op3=>operation: Trim()
+
+        op4=>operation: stripslashes()
+
+        op5=>operation: htmlspecialchars()
+
+        op6=>operation: return $data
+
+	op7=>operation: Warning
+
+       st->op1->c2
+
+       c2(no, bottom)->c3->op1
+
+       c2(yes)->op7->op
+
+       c3(true)->op2->op3->op4->op5->op6->e
+       c3(false)->e
+
+
+    </div><br><br>
+
+<textarea id="textBox19">
+<?php
+// Set empty variables
+$name = $email = $nid = $tel = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = test_input($_POST["name"]);
+  $email = test_input($_POST["email"]);
+  $nid = test_input($_POST["nid"]);
+  $tel = test_input($_POST["tel"]);
+ }
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?></textarea><br><br>
+<li> ใช้ action แบบ htmlspecialchars($_SERVER["PHP_SELF"])
+<textarea id="textBox20">
+<h2>PHP Form Validation Example</h2>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+  Name: <input type="text" name="name">
+  <br><br>
+  E-mail: <input type="text" name="email">
+  <br><br>
+  NID: <input type="text" name="nid">
+  <br><br>
+  Tel: <input name="tel">
+  <br><br>
+  <input type="submit" name="submit" value="Submit">  
+</form>
+</textarea><br><br>
+
+<li> Warn of any black cells
+<textarea id="textBox21">
+<?php
+// define variables and set to empty values
+$nameErr = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["name"])) {
+    $nameErr = "Name is required";
+  } else {
+    $name = test_input($_POST["name"]);
+  }
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?></textarea><br><br>
+
+<li> Name must be letters only.
+<textarea id="textBox22">
+$name = test_input($_POST["name"]);
+if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+  $nameErr = "Only letters and white space allowed";
+}
+</textarea><br><br>
+
+<li>Email must be valid.
+<textarea id="textBox23">
+$email = test_input($_POST["email"]);
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  $emailErr = "Invalid email format";
+}
+</textarea><br><br>
+
+<li>Show value in the cell after submission.
+<textarea id="textBox24">
+Name: <input type="text" name="name" value="<?php echo $name;?>">
+</textarea><br><br>
+
+<li>A complete form
+<textarea id="textBox25">
+
+<!DOCTYPE HTML>  
+<html>
+<head>
+</head>
+<body>  
+
+<?php
+$name = $email = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = test_input($_POST["name"]);
+  $email = test_input($_POST["email"]);
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+
+<h2>PHP Form</h2>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+  Name: <input type="text" name="name" value="<?php echo $name;?>">
+  <br><br>
+  E-mail: <input type="text" name="email">
+  <br><br>
+  Gender:
+  <input type="radio" name="gender" value="female">Female
+  <br><br>
+  <input type="submit" name="submit" value="Submit">  
+</form>
+
+<?php
+echo "<h2>Input:</h2>";
+echo $name;
+echo "<br>";
+echo $email;
+echo "<br>";
+echo "<br>";
+echo $gender;
+?>
+
+</body>
+</html>
+</textarea><br><br>
+
+</ol>  
+<br>
+<center>****************</center><br>
+
+
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>1</li>
+                    <li>2</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+<!--JAVASCRIPT FLOWCHART-->
+ <script>
+      function myFunction(event, node) {
+        console.log("You just clicked this node:", node);
+      }
+    </script>
+		<script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/raphael/raphael.js"></script>
+    <script src="../js/flowchart.js"></script>
+		<script>
+		$('#chart').flowChart();
+		</script>
+
+<!--JAVASCRIPT TEXTAREA FIT TEXT-->
+<script type="text/javascript">
+	for (var i = 1; i <=100; i++) {
+	document.getElementById('textBox' + i).style.height = document.getElementById('textBox' +i).scrollHeight+'px';
+}
+
+</script>
+
+
+</body>
+</html>

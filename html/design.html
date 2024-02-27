@@ -1,0 +1,90 @@
+﻿<html>
+<head>
+  <link rel="stylesheet" href="../css/book.css">
+
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+</head>
+<title>e-Request | User's Guide</title>
+<body>
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>ระบบ e-Request</h1>
+                <h6>MNRE-SLC-007</h6>
+            </header>
+            <article>
+    <h2 class="chapter-title">ออกแบบระบบ<br>e-Request</h2>
+
+<p>
+ระบบรับคำขอข้อมูลข่าวสารของกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม (e-Request) เขียนด้วยภาษาฝั่งผู้ใช้งาน (client-side script) คือ  HTML CSS และ JavaScript เพื่อสร้างบริการอิเล็กทรอนิกส์ ประเภทเว็บแอพลิเคชัน สามารถเข้าถึงและใช้งานบนอุปกรณ์มือถือและเครื่องคอมพิวเตอร์ทั่วไปที่มีโปรแกรมเว็บบราวเซอร์ ผ่าน URL <a href="http://lib.mnre.go.th/info">http://lib.mnre.go.th/info</a> และระยะต่อไป อาจย้ายไปอยู่ในเครื่องแม่ข่ายบนคลาวด์กลางของรัฐบาล ภายใต้โครงการ Government Data and Cloud Center (GDCC) ของสำนักงานคณะกรรมการดิจิทัลเพื่อเศรษฐกิจและสังคมแห่งชาติ ซึ่งสำนักงานปลัดกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม โดยศูนย์บริการร่วมกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม ได้ยื่นคำขอไว้ในปี พ.ศ. 2567</p>
+<p>
+การออกแบบระบบ e-Request คำนึงถึงการปฏิบัติตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 โดยแจ้งประกาศความเป็นส่วนตัว (privacy notice) ผ่านลิงค์ที่อยู่ด้านบนของหน้าต่างโปรแกรม และมี e-Form สำหรับกรอกคำขอข้อมูลข่าวสาร เมื่อครบถ้วนแล้ว มีปุ่ม <mark class="blue">"สร้างคำขอ "</mark> เพื่อจัดทำร่างคำขอให้ปรากฏในกล่องข้อความแบบอัตโนมัติ (โดยเรียกใช้ฟังก์ชั่นในไฟล์ iRequest.js) เพื่อให้ผู้ใช้งานตรวจสอบความถูกต้อง โดยสามารถพิมพ์แก้ไขเพิ่มเติมข้อความได้ตามความเหมาะสม เมื่อเรียบร้อยแล้ว มีปุ่ม <mark class='blue'>"คัดลอก"</mark> และปุ่ม<mark class="blue"> "iOS"</mark> หรือ <mark class="blue">"Gmail"</mark> นำผู้ใช้ไปยังหน้าอีเมล เพื่อวางข้อความที่คัดลอกไว้ แล้วส่งอีเมลตามปกติ คำขอจะถูกส่งทางอีเมล ไปยังหน่วยงานตามที่ผู้ใช้งานเลือกไว้  
+</p>
+<p>นอกจากนี้ มีปุ่ม <mark>"Tracking"</mark> ใช้สำหรับเรียกดูข้อมูลสถานะคำขอจากฐานข้อมูลของศูนย์บริการร่วมกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม
+</p>
+<p>ทั้งนี้ มีผังงาน (Flowchart) ของโปรแกรม ดังนี้</p>
+   <div id="chart">
+      st=>start: เข้าระบบ e-Request|past:>../index.html[blank]
+      e=>end: ติดตามความคืบหน้า:>http://lib.mnre.go.th/info/html/track.html
+
+      op1=>operation: อ่าน privacy notice|past:>http://lib.mnre.go.th/info/html/pdpa.html
+
+      op2=>operation: กรอกข้อมูล|current
+
+      op3=>operation: กดปุ่มสร้างคำขอ|current
+
+      op4=>operation: ตรวจร่างคำขอ|current
+
+      op5=>operation: กดปุ่มส่งอีเมล|current
+
+      op6=>operation: วางข้อความและส่งอีเมล|current
+
+      c2=>condition: ครบถ้วน?|approved:>
+
+      io=>inputoutput: กดปุ่มคัดลอก|request
+
+      para=>parallel: ตรวจสอบลิงค์บนเมนู
+
+      st->op1->op2->op3->op4(right)->c2
+
+      c2(true)->io->op5->op6->e
+
+      c2(false)->op2
+
+    </div>
+
+<br>
+<center>****************</center><br>
+
+
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>1</li>
+                    <li>2</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+ <script>
+      function myFunction(event, node) {
+        console.log("You just clicked this node:", node);
+      }
+    </script>
+		<script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/raphael/raphael.js"></script>
+    <script src="../js/flowchart.js"></script>
+		<script>
+		$('#chart').flowChart();
+		</script>
+
+</body>
+</html>

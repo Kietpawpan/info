@@ -1,0 +1,92 @@
+﻿<html>
+<head>
+  <link rel="stylesheet" href="../css/book.css">
+
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+</head>
+<title>e-Request | User's Guide</title>
+<body>
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>ระบบยื่นคำขอข้อมูลข่าวสารของราชการ (e-Request)</h1>
+                <h6>MNRE-SLC-007</h6>
+            </header>
+            <article>
+    <h2 class="chapter-title">คู่มือผู้ใช้งานระบบ e-Request</h2>
+
+<p>
+ระบบรับคำขอข้อมูลข่าวสารของกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม (e-Request) ใช้สำหรับยื่นคำขอข้อมูลข่าวสารของกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อมแบบออนไลน์ โดยท่านไม่จำเป็นต้องไปยื่นคำขอ ณ ที่ทำการของหน่วยงานในสังกัดกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม เนื่องจากระบบนี้มีโปรแกรมช่วยพิมพ์คำขอตามรูปแบบคำขอข้อมูลข่าวสารของราชการ เพื่อให้ผู้ขอกดปุ่มคัดลอกและส่งอีเมลถึงหน่วยงานต่าง ๆ ได้ง่ายขึ้น และไม่ต้องจดจำอีเมลของหน่วยงานต่าง ๆ แต่อย่างใด</p><br>
+
+<p>
+<p><b>ขั้นตอนการยื่นคำขอข้อมูลข่าวสาร</b> เป็นไปตาม flowchart เริ่มจากเข้าสู่ระบบ e-Request ที่ <a href="http://lib.mnre.go.th/info">http://lib.mnre.go.th/info</a> แล้ว อ่านประกาศความเป็นส่วนตัว (privacy notice) ตาม<mark>ลิงค์</mark>ที่อยู่ด้านบนของหน้าโปรแกรมดังกล่าว จากนั้นกรอกข้อมูลใน e-Form เมื่อครบถ้วนแล้ว กดปุ่ม <mark class="blue">"สร้างคำขอ "</mark> จะมีร่างคำขอปรากฏในกล่องข้อความ ให้ตรวจสอบความถูกต้อง ทั้งนี้ ท่านอาจพิมพ์แก้ไขเพิ่มเติมข้อความได้ตามความเหมาะสม เมื่อเรียบร้อยแล้ว กดปุ่ม <mark class='blue'>"คัดลอก"</mark> แล้วส่งอีเมล โดยกดปุ่ม<mark class="blue"> "iOS"</mark> หรือ <mark class="blue">"Gmail"</mark> ระบบจะนำท่านไปยังหน้าอีเมล ให้วางข้อความที่คัดลอกไว้ แล้วส่งอีเมลตามปกติ คำขอของท่านจะถูกส่งทางอีเมล ไปยังหน่วยงานตามที่ท่านเลือกไว้  
+</p>
+<p>อนึ่ง ตาม<a href='../pdf/mati28Dec2547.pdf'>มติคณะรัฐมนตรี เมื่อวันที่ 28 ธันวาคม 2547 </a>กำหนดให้หน่วยงานที่ได้รับคำขอต้องปฏิบัติ กรณีที่ข้อมูลข่าวสารที่ขอมีเป็นจำนวนมาก หรือไม่สามารถดำเนินการให้แล้วเสร็จภายใน 15 วัน จะต้องแจ้งให้ผู้ขอทราบภายใน 15 วัน รวมถึงแจ้งกำหนดวันที่จะดำเนินการแล้วเสร็จให้ผู้ขอทราบด้วย 
+</p>
+<p>สำหรับการยื่นคำขอผ่านระบบ e-Tracking แล้ว หน่วยงานยังไม่แจ้งผลการพิจารณา ท่านอาจติดตามความคืบหน้า โดยกดปุ่ม <mark>"Tracking"</mark> ซึ่งมีวิธีใช้ตาม<a href='userGuide2.html'>คู่มือผู้ใช้ระบบ e-Tracking</a></p>
+
+   <div id="chart">
+      st=>start: เข้าระบบ e-Request|past:>../index.html[blank]
+      e=>end: ติดตามความคืบหน้า:>http://lib.mnre.go.th/info/html/track.html
+
+      op1=>operation: อ่าน privacy notice|past:>http://lib.mnre.go.th/info/html/pdpa.html
+
+      op2=>operation: กรอกข้อมูล|current
+
+      op3=>operation: กดปุ่มสร้างคำขอ|current
+
+      op4=>operation: ตรวจร่างคำขอ|current
+
+      op5=>operation: กดปุ่มส่งอีเมล|current
+
+      op6=>operation: วางข้อความและส่งอีเมล|current
+
+      c2=>condition: ครบถ้วน?|approved:>
+
+      io=>inputoutput: กดปุ่มคัดลอก|request
+
+      para=>parallel: ตรวจสอบลิงค์บนเมนู
+
+      st->op1->op2->op3->op4(right)->c2
+
+      c2(true)->io->op5->op6->e
+
+      c2(false)->op2
+
+    </div>
+
+<br>
+<center>****************</center><br>
+
+
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>1</li>
+                    <li>2</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+ <script>
+      function myFunction(event, node) {
+        console.log("You just clicked this node:", node);
+      }
+    </script>
+		<script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/raphael/raphael.js"></script>
+    <script src="../js/flowchart.js"></script>
+		<script>
+		$('#chart').flowChart();
+		</script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+﻿<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../css/book.css">
+<title>e-Request | Workflow</title>
+	<script src="https://kietpawpan.github.io/workflow/underscore-min.js"></script>
+	<script src="https://kietpawpan.github.io/workflow/raphael-min.js"></script>
+	<script src="https://kietpawpan.github.io/workflow/sequence-diagram-min.js">	</script>
+</head>
+
+<body>
+<style>
+textarea {
+width: 100%;
+overflow:hidden;
+resize:none;
+height: scrollHeight;
+}
+</style>
+
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>ระบบยื่นคำขอข้อมูลข่าวสารของราชการ (e-Request)</h1>
+                <h6>MNRE-SLC-009</h6>
+            </header>
+            <article>
+    <h2 class="chapter-title">แนวคิดการ Update <br> e-Tracking</h2>
+
+<p>
+การปรับปรุง (update) ข้อมูลสถานะของคำขอข้อมูลข่าวสารในระบบ e-Tracking จะดำเนินการโดยเจ้าหน้าที่ศูนย์บริการร่วมกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม ผ่านระบบ Backend ที่ควบคุมการแก้ไข source code ของฐานข้อมูลในระบบติดตามสถานะคำขอข้อมูลข่าวสารของกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม (e-Tracking) แบบออนไลน์ โดยไม่ต้องเข้าถึงเครื่องแม่ขายผ่านโปรแกรม Remote Desktop Connection ทั้งนี้ เพื่อป้องกันความคลาดเคลื่อนในการแก้ไข source code ดังกล่าว และอำนวยความสะดวกในการปรับปรุงฐานข้อมูลสถานะคำขอโดยเจ้าหน้าที่ผู้ปฏิบัติงานโดยไม่ต้องอาศัยความรู้ความชำนาญด้าน Coding แต่อย่างใด</p><br>
+
+<p><b>แนวคิดขั้นตอนการดำเนินงาน</b> เป็นไปตาม diagram เริ่มจากเปิดหน้าเว็บ update.php กรอกข้อมูลหมายเลขประจำตัวประชาชน (13 หลัก) ของผู้ขอ แล้วกดปุ่ม ยืนยัน เพื่อเข้ารหัส SHA3 512 เป็นการคุ้มครองข้อมูลส่วนบุคคลของผู้ขอข้อมูล จากนั้นกรอกข้อมูลความคืบหน้า แล้วกดปุ่ม Get Code เพื่อรับรหัส database แล้วกดปุ่ม 'OK' ระบบจะตรวจสอบความเรียบร้อยของข้อมูลและแจ้งเตือน ให้ปฏิบัติตามคำแนะนำของระบบ หากการกรอกข้อมูลสมบูรณ์ ระบบจะแจ้งให้กดปุ่ม Save เป็นการเสร็จสิ้นการปรับปรุงฐานข้อมูล จากนั้น ควรเข้าไปทดสอบระบบ e-Tracking ที่หน้าเว็บ track.php และกรอกข้อมูลเพื่อตรวจสอบว่า ระบบ e-Tracking ได้ update ข้อมูลสถานะคำขอนั้นแล้วหรือไม่ 
+</p>
+<br>
+<dd><strong>Source code:</strong> คำสั่งให้คอมพิวเตอร์แม่ข่ายปรับปรุงฐานข้อมูล
+<textarea id='textBox1'>
+//Use PHP languange
+<?php
+if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['update'])){
+$data=$_POST['updateDB'].PHP_EOL;
+$message = "ERROR 001: Incomplete data!";
+$success = "Done! Thank you.";
+	if($data==''){echo 
+	   		"<script type='text/javascript'>
+			   alert('$message');
+			 </script>";}
+	else{$filecontent=file_get_contents('progress.php');
+   	   $pos=strpos($filecontent, ';)?>') -6;
+	   $filecontent=substr($filecontent, 0, $pos)."\r\n".$data;
+	   file_put_contents("progress.php", $filecontent);
+	   echo "<script type='text/javascript'>
+                    alert('$success');
+                 </script>";}
+}
+?></textarea><br><br>
+
+<dd>
+<pre id="txt" hidden>
+title: SLC e-Tracking Database Updating Workflow
+note over update.php: Key ID data
+note over update.php: Click Confirm
+note over update.php: Key status data
+note over update.php: Click Get Code
+note over update.php: Click OK
+note over update.php: Click Save
+update.php-->>progress.php: Request content
+progress.php->update.php: Send content
+note over update.php: Delete tag
+note over update.php: Add a new code
+update.php-->>progress.php: Write data
+track.php-->>progress.php: Search
+progress.php->track.php: Report
+</pre>
+</dd>
+
+<br>
+<dd>
+<div id="diagram"></div>
+</dd>
+<script>
+	var diagram = Diagram.parse(document.getElementById('txt').
+innerText)
+
+diagram.drawSVG('diagram',{theme:'simple'})
+</script>
+
+<br>
+<center>****************</center><br>
+
+
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>1</li>
+                    <li>2</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+
+</body>
+<!--JAVASCRIPT TEXTAREA FIT TEXT-->
+<script type="text/javascript">
+	for (var i = 1; i <=100; i++) {
+	document.getElementById('textBox' + i).style.height = document.getElementById('textBox' +i).scrollHeight+'px';
+}
+
+</script>
+</html>

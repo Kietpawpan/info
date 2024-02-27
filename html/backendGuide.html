@@ -1,0 +1,133 @@
+﻿<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../css/book.css">
+<title>e-Request | Updating Algorithm</title>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+
+<body>
+<style>
+textarea {
+width: 100%;
+overflow:hidden;
+resize:none;
+height: scrollHeight;
+}
+</style>
+
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>ระบบยื่นคำขอข้อมูลข่าวสารของราชการ (e-Request)</h1>
+                <h6>MNRE-SLC-009</h6>
+            </header>
+            <article>
+    <h2 class="chapter-title">งาน Backend</h2>
+
+<p>
+การปรับปรุง (update) ข้อมูลสถานะของคำขอข้อมูลข่าวสารในระบบ e-Tracking จะดำเนินการโดยเจ้าหน้าที่ศูนย์บริการร่วมกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม ผ่านระบบ Backend ที่ออกแบบมาเพื่อควบคุมการแก้ไข source code ของฐานข้อมูลในระบบติดตามสถานะคำขอข้อมูลข่าวสารของกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม (e-Tracking) แบบออนไลน์ ให้เป็นไปอย่างถูกต้องและเรียบร้อย โดยไม่ต้องเข้าถึงเครื่องแม่ข่ายผ่านโปรแกรม Remote Desktop Connection ทั้งนี้ เพื่อป้องกันความคลาดเคลื่อนในการแก้ไข source code ดังกล่าว และอำนวยความสะดวกในการปรับปรุงฐานข้อมูลสถานะคำขอโดยเจ้าหน้าที่ผู้ปฏิบัติงานโดยไม่ต้องอาศัยความรู้ความชำนาญด้าน Coding แต่อย่างใด และจะทำให้ประชาชนผู้ยื่นคำขอข้อมูลข่าวสารผ่านระบบ e-Request รับทราบข้อมูลสถานะคำขอได้อย่างรวดเร็วและถูกต้องมากขึ้น </p><br>
+
+<p><b>รูปแบบขั้นตอนการดำเนินงาน</b> หรืออัลกอลิทึมของระบบ Update Backend เป็นไปตาม flowchart เริ่มจากเปิดหน้าเว็บ update.php กรอกข้อมูลหมายเลขประจำตัวประชาชน (13 หลัก) ของผู้ขอ แล้วกดปุ่ม ยืนยัน เพื่อเข้ารหัส SHA3 512 เป็นการคุ้มครองข้อมูลส่วนบุคคลของผู้ขอข้อมูล จากนั้นกรอกข้อมูลความคืบหน้า แล้วกดปุ่ม Get Code เพื่อรับรหัส database แล้วกดปุ่ม 'OK' ระบบจะตรวจสอบความเรียบร้อยของข้อมูลและแจ้งเตือน ให้ปฏิบัติตามคำแนะนำของระบบ หากการกรอกข้อมูลสมบูรณ์ ระบบจะแจ้งให้กดปุ่ม Save เป็นการเสร็จสิ้นการปรับปรุงฐานข้อมูล จากนั้น ควรเข้าไปทดสอบระบบ e-Tracking ที่หน้าเว็บ track.php และกรอกข้อมูลเพื่อตรวจสอบว่า ระบบ e-Tracking ได้ update ข้อมูลสถานะคำขอนั้นแล้วหรือไม่ 
+</p>
+
+   <div id="chart">
+
+      st=>start: เข้าระบบ Backend|past:>http://lib.mnre.go.th/info/update.php[blank]
+
+      e=>end: จบการทำงาน:>http://lib.mnre.go.th/info/html/track.html
+
+      op1=>operation: กรอกรหัสคำขอ|current
+
+      op2=>operation: ปกปิดข้อมูล|current
+
+      op3=>operation: กดปุ่ม ยืนยัน|current
+
+      op4=>operation: กรอกความคืบหน้า|current
+
+      op5=>operation: กดปุ่ม Get Code 
+  
+      c2=>condition: กรอกความคืบหน้า?|approved
+
+           op6=>operation: เตือนให้กรอกข้อมูล
+
+      c3=>condition: กรอกเลขประชาชน?|approved
+
+           op7=>operation: เตือนให้กรอกข้อมูล
+
+           oi=>inputoutput: รหัส PHP
+
+           op8=>operation: กด OK
+     
+      c4=>condition: มีรหัส PHP?|approved
+
+           op9=>operation: แจ้ง Thank you โปรดกด Save
+
+           op10=>operation: กด Save
+
+           op11=>operation: ตรวจสอบ e-Tracking
+
+           op12=>operation: เข้าระบบ Backend
+
+
+      c5=>condition: มีข้อมูล?|approved
+
+
+      st->op1->op2->op3->op4->op5->c2
+
+      c2(true)->c3
+
+      c2(false)->op6(top)->op4
+
+      c3(true)->oi->op8->c4
+
+      c3(false)->op7(right)->op1
+
+      c4(true)->op9->op10->op11->c5
+
+      c4(false)->op7
+
+       c5(true)->e
+
+       c5(false)->op12(top)->op1
+
+    </div>
+
+
+<br>
+<center>****************</center><br>
+
+
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>1</li>
+                    <li>2</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+
+</body>
+<!--JAVASCRIPT TEXTAREA FIT TEXT-->
+ <script>
+      function myFunction(event, node) {
+        console.log("You just clicked this node:", node);
+      }
+    </script>
+		<script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/raphael/raphael.js"></script>
+    <script src="../js/flowchart.js"></script>
+		<script>
+		$('#chart').flowChart();
+		</script>
+
+
+
+</html>

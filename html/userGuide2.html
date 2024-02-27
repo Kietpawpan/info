@@ -1,0 +1,92 @@
+﻿<html>
+<head>
+  <link rel="stylesheet" href="../css/book.css">
+
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+</head>
+<title>e-Tracking | User's Guide</title>
+<body>
+<div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>ระบบติดตามคำขอข้อมูลข่าวสาร (e-Tracking)</h1>
+                <h6>MNRE-SLC-008</h6>
+            </header>
+            <article>
+    <h2 class="chapter-title">คู่มือผู้ใช้งานระบบ e-Tracking</h2>
+
+<p>
+ระบบติดตามคำขอข้อมูลข่าวสารของกระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม (e-Tracking) ใช้ตรวจสอบสถานะของคำขอข้อมูลข่าวสารที่ยื่นผ่านระบบ e-Request เพื่อติดตามความก้าวหน้าว่าคำขอนั้น มีการดำเนินการถึงขั้นตอนใดแล้ว อาทิ
+<ol>
+<li>ได้รับคำขอแล้ว 
+<li>ตรวจสอบและรวบรวมข้อมูลข่าวสารตามคำขอ
+<li>อยู่ระหว่างการพิจารณา
+<li>เปิดเผย (หรือปฏิเสธการเปิดเผย) พร้อมนัดหมายวันรับข้อมูลข่าวสารและแจ้งค่าธรรมเนียม (ถ้ามี)
+</ol>
+<p>
+หลังจากยื่นคำขอผ่านระบบ e-Request แล้ว ท่านสามารถติดตามสถานะคำขอผ่านระบบ e-Tracking ในวันถัดไป</p><br>
+
+<p>
+<p><b>ขั้นตอนการติดตามคำขอ</b> เป็นไปตาม flowchart เริ่มจากเข้าสู่ระบบทาง <a href="http://lib.mnre.go.th/info/html/track.php">http://lib.mnre.go.th/info/html/track.php</a> แล้วกรอกรหัสผ่าน เป็นหมายเลขประจำตัวประชาชน 13 หลักของท่าน แล้วกดปุ่ม <mark class="blue">"ยืนยัน"</mark> จากนั้น ระบบจะคุ้มครองข้อมูลส่วนบุคคล โดยการเข้ารหัสข้อมูลดังกล่าว เป็น Public Key ปรากฏในกล่องข้อความถัดจากช่องที่กรอกหมายเลขประจำตัวประชาชน จากนั้นกดปุ่ม <mark class="blue">"ค้นหา*"</mark> ระบบจะสืบค้นและแสดงข้อมูลสถานะของคำขอนั้นทันที ทั้งนี้ กรณีไม่พบรหัสคำขอที่กรอก ระบบจะแจ้งว่า No data! แสดงว่ารหัสไม่ถูกต้องหรือเจ้าหน้าที่ยังมิได้ปรับปรุงข้อมูลในระบบ e-Tracking เนื่องจากอยู่ระว่างรับคำขอหรือรหัสนั้นมิได้อยู่ในสารบบแต่อย่างใด อนึ่ง กรณีมีปัญหาการใช้งาน โทร. 0 2265 6223-5 ตั้งแต่เวลา 8.00 น. - 17.00 น. (ไม่พักกลางวัน) ยกเว้นวันหยุดราชการ อย่างไรก็ตาม หากจะติดต่อนอกเวลาทำการ ท่านอาจ<a href='https://lin.ee/1ItKjol'>ส่งข้อความทางบัญชีไลน์</a> <mark class="blue">GECC สป.ทส.</mark> จะมี Chatbot และ/หรือ เจ้าหน้าที่ คอยให้คำแนะนำแก่ท่านตลอด 24 ชั่วโมง</p>
+
+   <div id="chart">
+
+      st=>start: เข้าระบบ e-Tracking|past:>http://lib.mnre.go.th/info/html/track.php[blank]
+
+      e=>end: ทราบความคืบหน้า:>http://lib.mnre.go.th/info/html/track.html
+
+      op1=>operation: กรอกรหัสคำขอ|current
+
+      op2=>operation: กดปุ่มยืนยัน|current
+
+      op3=>operation: กดปุ่ม ค้นหา|current
+
+      op4=>operation: อ่านข้อความ|current
+  
+      c2=>condition: กรอกรหัส?|approved:>
+
+      io=>inputoutput: ข้อมูลสถานะ|request
+
+      st->op1->op2(right)->op3->op4->c2
+
+      c2(true)->io->e
+
+      c2(false)->op1
+
+
+    </div>
+<br>
+<center>****************<br><br><a href='../index.html'>[กลับหน้าระบบ e-Request]</a></center><br>
+
+
+
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>1</li>
+                    <li>2</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+
+ <script>
+      function myFunction(event, node) {
+        console.log("You just clicked this node:", node);
+      }
+    </script>
+		<script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/raphael/raphael.js"></script>
+    <script src="../js/flowchart.js"></script>
+		<script>
+		$('#chart').flowChart();
+		</script>
+
+</body>
+</html>
