@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+<title>Info| Com</title>
+<head>
+
+    <base target="_top">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=yes;" />
+
+</head>
+  <body><br/>
+<pre class="mermaid" style="margin-top:10px"> 
+---
+title: ร่างแนวทางการเสนอเรื่องต่อคณะกรรมการข้อมูลข่าวสารของ สป.ทส. ปีงบประมาณ พ.ศ. 2567
+---
+
+flowchart TD
+I[ข้อมูลข่าวสารตามคำขอ]
+I-->H[มี]
+I-->NH[ไม่มี]-->Mime[แจ้งปฏิเสธว่าไม่มี]:::Ong0
+H-->C[ลับ]
+H-->UC[ไม่ลับ]-->N15[ไม่เข้ามาตรา 15]-->Perd[แจ้งเปิดเผย]:::Ong0
+UC-->15[เข้ามาตรา 15\nหรือไม่แน่ใจ]-->COM
+C-->S[จัดทำโดย สป.ทส.]
+C-->OTH[จัดทำโดยหน่วยงานของรัฐแห่งอื่น]
+OTH-->PPC[ป.ป.ช.]-->COM[เสนอคณะกรรมการฯ พิจารณา]:::Sang0
+OTH-->ELSE[หน่วยงานอื่น]-->SEND[ส่งคำขอให้หน่วยงานนั้น\nตามมาตรา 12 วรรคสอง]:::Ong0
+
+S-->V[วินัย]
+S-->NV[ไม่ใช่วินัย]-->COM
+V-->MS[กระบวนการยังไม่เสร็จสิ้น]-->PAT[แจ้งปฏิเสธการเปิดเผย \nตามมาตรา 15 อนุ 2]:::Ong0
+V-->SE[กระบวนการเสร็จสิ้นแล้ว]-->COM
+
+classDef Ong fill:#0f0
+classDef Sod fill:#f96
+classDef Sod0 stroke:#f96, stroke-width: 4px
+classDef Ong0 stroke:#0f0, stroke-width: 4px
+classDef Ins stroke:#00f, stroke-width: 4px
+classDef I5 fill:#00f, color:#fff
+classDef Sang0 fill:#f00, color:#fff
+classDef Sang stroke:#f00, stroke-width: 4px
+
+classDef M80 fill:#f96
+classDef M8 stroke:#f96, stroke-width: 4px
+
+
+  	
+</pre>
+	
+
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+
+</body>
+</html>
